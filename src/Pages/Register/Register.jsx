@@ -15,24 +15,24 @@ export default function Register() {
         method: "POST",
         data: values
       };
-    /*hot toast loading....*/
-    id = toast.loading("wait....")
-    const { data } = await axios.request(options);
-    console.log(data);
-    toast.dismiss(id);
-    toast.success("ueser created successfuly");
-    setTimeout(() => {
-      if (data.message === "success") {
-        navigate('/auth/login')
-      }
-    }, 2000)
+      /*hot toast loading....*/
+      id = toast.loading("wait....")
+      const { data } = await axios.request(options);
+      console.log(data);
+      toast.dismiss(id);
+      toast.success("ueser created successfuly");
+      setTimeout(() => {
+        if (data.message === "success") {
+          navigate('/auth/login')
+        }
+      }, 2000)
 
-  } catch (error) {
-    toast.dismiss(id)
-    toast.error(error.response.data.message)
-    console.log(error)
-    setErrMsg(error.response.data.message)
-  }
+    } catch (error) {
+      toast.dismiss(id)
+      toast.error(error.response.data.message)
+      console.log(error)
+      setErrMsg(error.response.data.message)
+    }
   }
   /* validationSchema with yup*/
   const phoneRgex = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$';
@@ -90,7 +90,7 @@ export default function Register() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-           
+
             {formik.errors.email && formik.touched.email ? (
               <div className="text-red-600 font-bold mt-3">
                 *{formik.errors.email}
@@ -99,13 +99,13 @@ export default function Register() {
               :
               ("")
             }
-             {
-              errMsg?(
+            {
+              errMsg ? (
                 <div className="text-red-600 font-bold mt-3">
-                *{errMsg}
-              </div>
+                  *{errMsg}
+                </div>
               )
-              :('')
+                : ('')
             }
           </div>
           <div>

@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { userContext } from '../../Context/User.Context';
+import { userContext } from '../../Context/User.context';
 
 
 export default function Login() {
@@ -107,7 +107,7 @@ export default function Login() {
               :('')
             }
           </div>
-          <button className='bg-primary p-1 rounded px-3' type='submit'>LogIn</button>
+          <button className='bg-primary p-1 rounded px-3' type='submit'>LogIn..</button>
         </form>
       </section>
     </>

@@ -41,7 +41,9 @@ export default function App() {
       path: '/auth', element: <Layout />, children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
-        { path: "logout", element: <Login /> },
+        { path: "logout", element: <Login /> 
+          
+        },
 
       ],
     },
