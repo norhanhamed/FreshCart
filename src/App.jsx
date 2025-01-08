@@ -19,31 +19,40 @@ import AllOrders from './Pages/AllOrders/AllOrders.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Offline } from 'react-detect-offline';
+import CategoryProduct from './Pages/CategoryProduct/CategoryProduct.jsx';
+import BrandProduct from './Pages/BrandProduct/BrandProduct.jsx';
+import WishListprovider from './Context/WishList.context.jsx';
+import WishList from './Pages/WishList/WishList.jsx';
+import ResetPassword from './Pages/ResetPassword/ResetPassword.jsx';
+import VerifyCode from './Pages/VerifyCode/VerfiyCode.jsx';
+import ForgetPass from './Pages/ForgetPass/ForgetPass.jsx';
 
 export default function App() {
   const routes = createBrowserRouter([
     {
-      path: "/", element: <ProtectedRoute > <Layout /> </ProtectedRoute >, children: [
+      path: "/",
+      element: <ProtectedRoute > <Layout /> </ProtectedRoute >,
+      children: [
         { index: true, element: <ProtectedRoute ><Home /></ProtectedRoute> },
         { path: "brands", element: <Brands /> },
+        { path: "brandProduct/:id", element: <BrandProduct /> },
         { path: "/allProducts", element: <Products /> },
         { path: "/cart", element: <Cart /> },
         { path: "/categories/:id", element: <Categories /> },
+        { path: "categoryProduct/:id", element: <CategoryProduct /> },
         { path: "/products/:id", element: <ProductDetails /> },
         { path: "/checkout", element: <Checkout /> },
         { path: "/allorders", element: <AllOrders /> },
-
+        { path: "/wishList", element: <WishList /> },
         { path: "*", element: <NotFound /> },
       ],
     },
-
-    {
-      path: '/auth', element: <Layout />, children: [
+    {path: '/auth', element:  <Layout />, children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
-        { path: "logout", element: <Login /> 
-          
-        },
+        { path: "forgot", element: <ForgetPass />} ,
+        { path: "verify", element: <VerifyCode /> },
+        { path: "resetPassword", element: <ResetPassword /> },
 
       ],
     },
@@ -55,14 +64,16 @@ export default function App() {
     <>
       <QueryClientProvider client={myClient}>
         <UserProvider >
-          <CartProvider >
-            <RouterProvider router={routes} ></RouterProvider>
-            <ReactQueryDevtools position='bottom'></ReactQueryDevtools>
-            <Toaster />
-          </CartProvider>
+          <WishListprovider>
+            <CartProvider >
+              <RouterProvider router={routes} ></RouterProvider>
+              <ReactQueryDevtools position='bottom'></ReactQueryDevtools>
+              <Toaster />
+            </CartProvider>
+          </WishListprovider>
         </UserProvider>
       </QueryClientProvider>
-      
+
     </>
   )
 }
