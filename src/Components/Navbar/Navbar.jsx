@@ -3,16 +3,12 @@ import logo from '../../assets/images/freshcart-logo.svg'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { userContext } from '../../Context/User.context'
 import { CartContext } from '../../Context/Cart.context'
+import menueIcon from '../../assets/images/menueIcon.png'
+
 export default function Navbar() {
-  const { token ,setToken} = useContext(userContext);
-  const navigate = useNavigate()
+  const { token, logout } = useContext(userContext);
   const { getCartInfo, cartInfo } = useContext(CartContext);
-  function Logout() { 
-    setToken(null);
-    localStorage.removeItem("token");
-    navigate('/auth/login')
-  }
-  useEffect(() => { getCartInfo() }, [])
+  useEffect(() => { getCartInfo() }, []);
   return (
     <>
       <nav className='bg-slate-100 p-3 mb-3 '>
@@ -70,23 +66,30 @@ export default function Navbar() {
                 </li>
 
               </ul>
+              
+              {/* wishIcon + cartIcon */}
+              <ul className='flex gap-6 items-center ms-auto '>
+                <li>
+                  <Link to="/cart"
+                    className="ms-auto relative">
+                    <i className='fa-solid fa-cart-shopping text-lg'></i>
+                    <span className='bg-primary absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full text-sm font-bold text-white flex justify-center items-center'>
+                      {cartInfo === null ? <i className='fa-solid fa-spinner fa-spin '></i> : cartInfo.numOfCartItems || 0}
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/wishList"
+                    className={`hover:transition-all hover:text-red-600 hover:duration-300 hover:animate-bounce `}>
+                    <i className="fa-regular fa-heart text-xl font-bold "></i>
+                  </Link>
+                </li>
 
-              <Link to="/cart"
-                className="ms-auto relative">
-                <i className='fa-solid fa-cart-shopping text-lg'></i>
-                <span className='bg-primary absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full text-sm font-bold text-white flex justify-center items-center'>
-                  {cartInfo === null ? <i className='fa-solid fa-spinner fa-spin '></i> : cartInfo.numOfCartItems || 0}
-                </span>
-              </Link>
 
-              <Link
-                to="/wishList"
-                className={`hover:transition-all hover:text-red-600 hover:duration-300 hover:animate-bounce `}>
-                <i className="fa-regular fa-heart text-xl font-bold "></i>
-              </Link>
-
+              </ul>
               {/* media ul  */}
-              <ul className='flex gap-6 items-center '>
+              <ul className='flex gap-6 items-center  '>
                 <li>
                   <Link to="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link">
                     <i className="fa-brands fa-facebook"></i>
@@ -107,16 +110,15 @@ export default function Navbar() {
                     <i className="fa-brands fa-linkedin"></i>              </Link>
                 </li>
               </ul>
-
             </>)
             : ("")
           }
 
           {/* authentication ul */}
-          <ul className="flex gap-6 items-center ms-auto">
+          <ul className="flex gap-6 items-center ms-auto" >
             {token ? (
-              <li className='cursor-pointer'   >
-                  <i onClick={ Logout()} class="fa-solid fa-right-from-bracket text-2xl hover:text-red-600 transition-colors duration-300 "></i>
+              <li onClick={logout} className='cursor-pointer'   >
+                <i class="fa-solid fa-right-from-bracket text-2xl hover:text-red-600 transition-colors duration-300 "></i>
               </li>) : (
               <>
                 <li>

@@ -9,7 +9,6 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import NotFound from './Pages/NotFound/NotFound';
 import { Toaster } from 'react-hot-toast';
-import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Cart from './Pages/Cart/Cart';
 import UserProvider from './Context/User.context.jsx';
@@ -23,17 +22,18 @@ import CategoryProduct from './Pages/CategoryProduct/CategoryProduct.jsx';
 import BrandProduct from './Pages/BrandProduct/BrandProduct.jsx';
 import WishListprovider from './Context/WishList.context.jsx';
 import WishList from './Pages/WishList/WishList.jsx';
-import ResetPassword from './Pages/ResetPassword/ResetPassword.jsx';
-import VerifyCode from './Pages/VerifyCode/VerfiyCode.jsx';
-import ForgetPass from './Pages/ForgetPass/ForgetPass.jsx';
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
+// import ResetPassword from './Pages/ResetPassword/ResetPassword.jsx';
+// import VerifyCode from './Pages/VerifyCode/VerfiyCode.jsx';
+// import ForgetPass from './Pages/ForgetPass/ForgetPass.jsx';
 
 export default function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <ProtectedRoute > <Layout /> </ProtectedRoute >,
+      element:  <ProtectedRoute >  <Layout /> </ProtectedRoute>  ,
       children: [
-        { index: true, element: <ProtectedRoute ><Home /></ProtectedRoute> },
+        { index: true, element: <Home /> },
         { path: "brands", element: <Brands /> },
         { path: "brandProduct/:id", element: <BrandProduct /> },
         { path: "/allProducts", element: <Products /> },
@@ -50,9 +50,9 @@ export default function App() {
     {path: '/auth', element:  <Layout />, children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
-        { path: "forgot", element: <ForgetPass />} ,
-        { path: "verify", element: <VerifyCode /> },
-        { path: "resetPassword", element: <ResetPassword /> },
+        // { path: "forgot", element: <ForgetPass />} ,
+        // { path: "verify", element: <VerifyCode /> },
+        // { path: "resetPassword", element: <ResetPassword /> },
 
       ],
     },

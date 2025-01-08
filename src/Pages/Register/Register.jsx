@@ -5,11 +5,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 export default function Register() {
-   const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
-    };
-    const [showPassword, setShowPassword] = useState(false);
-
+   
   const [errMsg, setErrMsg] = useState(null);
   const navigate = useNavigate()
   async function submitForm(values) {
@@ -141,14 +137,6 @@ export default function Register() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <i
-              onClick={togglePasswordVisibility}
-              className={
-                showPassword
-                  ? `fa-solid fa-eye absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer`
-                  : `fa-solid fa-eye-slash absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer `
-              }
-            ></i>
             {formik.errors.password && formik.touched.password ? (
               <div className="text-red-600 font-bold mt-3">
                 *{formik.errors.password}
@@ -167,14 +155,6 @@ export default function Register() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <i
-              onClick={togglePasswordVisibility}
-              className={
-                showPassword
-                  ? `fa-solid fa-eye absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer`
-                  : `fa-solid fa-eye-slash absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer `
-              }
-            ></i>
             {formik.errors.rePassword && formik.touched.rePassword ? (
               <div className="text-red-600 font-bold mt-3">
                 *{formik.errors.rePassword}

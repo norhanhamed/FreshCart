@@ -8,14 +8,10 @@ import { userContext } from '../../Context/User.context';
 
 
 export default function Login() {
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-  const [showPassword, setShowPassword] = useState(false);
+  const { token, setToken } = useContext(userContext);
 
   const [errMsg, setErrMsg] = useState(null);
   let navigate = useNavigate();
-  const { token, setToken } = useContext(userContext);
   async function loginForm(values) {
     let id;
     try {
@@ -30,18 +26,19 @@ export default function Login() {
       console.log(data);
       toast.dismiss(id);
       toast.success("ueser loggedIn successfuly");
-      setTimeout(() => {
-        if (data.message === "success") {
+      setTimeout(()=>{
+        if(data.message === "success"){
           localStorage.setItem("token", data.token);
-          setToken(data.token)
+          setToken(data.token);
           navigate('/')
         }
-      }, 2000)
-    } catch (error) {
+      },1000)
+          
+      } catch (error) {
       toast.dismiss(id)
-      toast.error(error.response.data.message)
+      toast.error(error.response.data?.message)
       console.log(error)
-      setErrMsg(error.response.data.message)
+      setErrMsg(error.response.data?.message)
     }
   }
   /* validationSchema with yup*/
@@ -63,7 +60,7 @@ export default function Login() {
     <>
       <section>
         <h2 className='text-primary text-2xl py-3'>
-          <i className='fa-regular fa-circle-token me-3'></i>
+          <i className='fa-regular fa-circle-user me-3'></i>
           <span>Login Now</span>
         </h2>
         <form className="space-y-3" onSubmit={formik.handleSubmit}>
@@ -85,7 +82,7 @@ export default function Login() {
               ("")
             }
           </div>
-          <div className='relative'>
+          <div>
             <input type="password"
               className="w-full form-control"
               name='password'
@@ -94,14 +91,6 @@ export default function Login() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-              <i
-              onClick={togglePasswordVisibility}
-              className={
-                showPassword
-                  ? `fa-solid fa-eye absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer`
-                  : `fa-solid fa-eye-slash absolute  top-[50%]  right-[10px] -translate-y-[50%] cursor-pointer `
-              }
-            ></i>
             {formik.errors.password && formik.touched.password ? (
               <div className="text-red-600 font-bold mt-3">
                 *{formik.errors.password}
@@ -119,9 +108,9 @@ export default function Login() {
                 : ('')
             }
           </div>
-          <Link to='/forgot' className="my-2">
+          {/* <Link to='/auth/forgot' className="my-2">
             <p className="my-2">Forgot your password?</p>
-          </Link>
+          </Link> */}
           <button className='bg-primary p-1 rounded px-3' type='submit'>LogIn..</button>
         </form>
       </section>
