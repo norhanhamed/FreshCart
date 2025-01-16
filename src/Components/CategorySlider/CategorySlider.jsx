@@ -29,7 +29,7 @@ export default function CategorySlider() {
   return (
     <>
       <section className='pb-8'>
-        <h2 className='font-semibold'>Shop Popular Categories</h2>
+        <h2 className='font-semibold pl-1'>Shop Popular Categories</h2>
         <Swiper
           loop={true}
           modules={[ Autoplay]}
@@ -50,10 +50,10 @@ export default function CategorySlider() {
           }}
         >
           {data.data.data.map((category) =>
-            <SwiperSlide key={category._id}>
+            <SwiperSlide key={category._id} className='h-90'>
               <Link to={`/categories/${category._id}`} >
                 <img src={category.image} alt="category slide" className='w-full h-72 object-cover' />
-                <h3>{category.name}</h3>
+                <h3 className='pl-1'>{category.name}</h3>
               </Link>
             </SwiperSlide>)}
         </Swiper>

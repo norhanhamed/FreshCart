@@ -6,7 +6,7 @@ export default function UserProvider({ children }) {
  function logout() { 
     setToken(null);
     localStorage.removeItem("token");
-    navigate('/auth/login')
+    navigate('/auth/login');
  }
   return (
     <userContext.Provider value={{ token, setToken ,logout}} >
