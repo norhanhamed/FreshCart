@@ -66,7 +66,7 @@ export default function CartProvider({ children }) {
             toast.success("Item Removed Successfully")
         } catch (error) {
             console.log(error);
-            if (error.response.data.message.includes('No cart')) {
+            if (error.data.message.includes('No cart')) {
                 setCartInfo([]);
             }
         }

@@ -4,7 +4,7 @@ import Home from './Pages/Home/Home';
 import Brands from './Pages/Brands/Brands';
 import Categories from './Pages/Categories/Categories';
 import Products from './Pages/Products/Products';
-import Layout from './Pages/Layout/Layout';
+import Layout from './Components/Layout/Layout.jsx';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import NotFound from './Pages/NotFound/NotFound';
@@ -20,8 +20,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Offline } from 'react-detect-offline';
 import CategoryProduct from './Pages/CategoryProduct/CategoryProduct.jsx';
 import BrandProduct from './Pages/BrandProduct/BrandProduct.jsx';
-import WishListprovider from './Context/WishList.context.jsx';
-import WishList from './Pages/WishList/WishList.jsx';
+// import WishListprovider from './Context/WishList.context.jsx';
+// import WishList from './Pages/WishList/WishList.jsx';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
 // import ResetPassword from './Pages/ResetPassword/ResetPassword.jsx';
 // import VerifyCode from './Pages/VerifyCode/VerfiyCode.jsx';
@@ -43,7 +43,7 @@ export default function App() {
         { path: "/products/:id", element: <ProductDetails /> },
         { path: "/checkout", element: <Checkout /> },
         { path: "/allorders", element: <AllOrders /> },
-        { path: "/wishList", element: <WishList /> },
+        // { path: "/wishList", element: <WishList /> },
         { path: "*", element: <NotFound /> },
       ],
     },
@@ -64,13 +64,11 @@ export default function App() {
     <>
       <QueryClientProvider client={myClient}>
         <UserProvider >
-          <WishListprovider>
             <CartProvider >
               <RouterProvider router={routes} ></RouterProvider>
               <ReactQueryDevtools position='bottom'></ReactQueryDevtools>
               <Toaster />
             </CartProvider>
-          </WishListprovider>
         </UserProvider>
       </QueryClientProvider>
 

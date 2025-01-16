@@ -13,9 +13,11 @@ export default function Footer() {
                 <div className="container">
                     <h2 className='text-2xl font-semibold '>Get Freshcart App</h2>
                     <p className='my-3 capitalize'> we will send you a link ,open it in your phone to download the app . </p>
-                    <div className='flex gap-4'>
+                    <div className=''>
+                        <form  className='flex gap-4'>
                         <input type="email" placeholder='Email...' className='form-control flex-grow' />
-                        <button className='btn-primary rounded'>share app link</button>
+                        <button type='submit' className='btn-primary rounded'>share app link</button>
+                        </form>
                     </div>
                     <div className="flex justify-between mt-4">
                         <div className="flex gap-2 items-center ">

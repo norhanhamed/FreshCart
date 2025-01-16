@@ -9,7 +9,16 @@ export default function Cart() {
     return (
         <>
             {cartInfo === null ?
-                (<Loading />) : (
+                (
+                    <div className="py-6 rounded-lg flex flex-col justify-center items-center gap-3 border-2 border-primary-500">
+                        <h2>There are not items yet.</h2>
+                        <Link
+                            to="/allproducts"
+                            className="btn font-medium text-center mx-2  px-3 py-2 rounded-xl bg-primary-500 hover:bg-primary-600 hover:duration-300 hover:transition-colors "
+                        >
+                            Add your product to Wish List
+                        </Link>
+                    </div>) : (
                     <section className='bg-slate-100 rounded p-5'>
                         <div className='mb-8'>
                             <h2 className='mb-2'>

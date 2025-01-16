@@ -1,12 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../Context/Cart.context';
-import { WishContext } from './../../Context/WishList.context';
 
 export default function ProductCard({ productInfo }) {
     const { images, title, description, price, category, ratingsAverage, id } = productInfo;
     const { addProductToCart } = useContext(CartContext);
-    const { addWishList } = useContext(WishContext);
 
     return (
         <>
@@ -17,7 +15,7 @@ export default function ProductCard({ productInfo }) {
                         alt="" />
                     {/* layer */}
                     <div className="layer opacity-0 hover:opacity-100 transition-opacity duration-250 absolute flex justify-center items-center gap-2 w-full h-full left-0 top-0 bg-black bg-opacity-15 ">
-                        <div onClick={() => { addWishList({ productId: id }); }}
+                        <div 
                             className="icon w-10 h-10 rounded-full bg-primary text-sm text-white flex justify-center items-center cursor-pointer transition-transform hover:scale-110 duration-300 hover:rotate-6">
                             <i className='fa-solid fa-heart'></i>
                         </div>
